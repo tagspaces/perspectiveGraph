@@ -1,5 +1,5 @@
 {
-  "name": "perspectiveGraph",
+  "name": "FolderViz",
   "id": "perspectiveGraph",
   "description": "A TagSpaces perspective extension allowing to view your file system as a graph.",
   "type": "perspective",

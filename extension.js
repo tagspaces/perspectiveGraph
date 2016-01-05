@@ -9,11 +9,7 @@ define(function(require, exports, module) {
 
 	var extensionTitle = "FolderViz";
 	var extensionID = "perspectiveGraph";  // ID should be equal to the directory name where the ext. is located   
-	var extensionType =  "perspective";
 	var extensionIcon = "fa fa-sitemap";
-	var extensionVersion = "1.0";
-	var extensionManifestVersion = 1;
-	var extensionLicense = "AGPL";
 
 	var TSCORE = require("tscore");
 	
@@ -195,12 +191,8 @@ define(function(require, exports, module) {
   // Vars
   exports.Title = extensionTitle;
   exports.ID = extensionID;
-  exports.Type = extensionType;
   exports.Icon = extensionIcon;
-  exports.Version = extensionVersion;
-  exports.ManifestVersion = extensionManifestVersion;
-  exports.License = extensionLicense;
-    
+
   // Methods
 	exports.clearSelectedFiles = clearSelectedFiles;
 	exports.getNextFile	= getNextFile;
