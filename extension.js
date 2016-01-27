@@ -1,27 +1,23 @@
-/* Copyright (c) 2013-2015 The Tagspaces Authors. All rights reserved.
+/* Copyright (c) 2013-2016 The TagSpaces Authors. All rights reserved.
  * Use of this source code is governed by a AGPL3 license that 
  * can be found in the LICENSE file. */
 
 define(function(require, exports, module) {
 "use strict";
 	
-	console.log("Loading perspectiveGraph");
-
 	var extensionTitle = "FolderViz";
-	var extensionID = "perspectiveGraph";  // ID should be equal to the directory name where the ext. is located   
+	var extensionID = "perspectiveGraph";  // ID should be equal to the directory name where the ext. is located
 	var extensionIcon = "fa fa-sitemap";
 
-	var TSCORE = require("tscore");
-	
-	var $viewContainer;
+  console.log("Loading " + extensionID);
 
-	var extensionDirectory = TSCORE.Config.getExtensionPath()+"/"+extensionID;
-	
-	var graphMode = "mindmap"; 
-	
+	var TSCORE = require("tscore");
+	var $viewContainer;
+	var extensionDirectory = TSCORE.Config.getExtensionPath() + "/" + extensionID;
+	var graphMode = "mindmap";
 	var treeData;
 	
-	exports.init = function init() {
+	function init() {
 		console.log("Initializing View "+extensionID);
 		
     $viewContainer = $("#"+extensionID+"Container").empty();
@@ -37,14 +33,14 @@ define(function(require, exports, module) {
 
       $('#' + extensionID + 'Container [data-i18n]').i18n();
     });
-	};
+	}
 	
-	exports.load = function load() {
+	function load() {
 		console.log("Loading View "+extensionID);
     TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
-	};
+	}
 	
-	var reDraw = function() {
+	function reDraw() {
 	  var $viewContainers = $("#viewContainers");
 	  var height = $viewContainers.height() - 5;
 	  var width = $viewContainers.width() - 5;
@@ -123,9 +119,9 @@ define(function(require, exports, module) {
       default:
         break;
     }
-	};
+	}
 	
-	exports.updateTreeData = function updateIndexData(fsTreeData) {
+	function updateTreeData(fsTreeData) {
 		console.log("Updating tree data, Rendering graph...");
 		
 		treeData = fsTreeData;
@@ -133,29 +129,34 @@ define(function(require, exports, module) {
 		reDraw();
    
 		TSCORE.hideLoadingAnimation(); 
-	};
+	}
 	
-	var clearSelectedFiles = function() {
+	function clearSelectedFiles() {
+
 		console.log("clearSelectedFiles not implemented in "+extensionID);
-	};
+	}
 	
-  var removeFileUI = function(filePath) {
+  function removeFileUI(filePath) {
+
     console.log("removeFileUI not implemented in "+extensionID);
-  };
+  }
 
-  var updateFileUI = function(oldFilePath, newFilePath) {
+  function updateFileUI(oldFilePath, newFilePath) {
+
     console.log("updateFileUI not implemented in "+extensionID);
-  };
+  }
     
-	var getNextFile = function (filePath) {
-		console.log("getNextFile not implemented in "+extensionID);
-	};
+	function getNextFile(filePath) {
 
-	var getPrevFile = function (filePath) {
+		console.log("getNextFile not implemented in "+extensionID);
+	}
+
+	function getPrevFile(filePath) {
+
 		console.log("getPrevFile not implemented in "+extensionID);
-	};   
+	}
 	
-	var initUI = function() {
+	function initUI() {
 
     $("#" + extensionID + "ActivateMindmapButton").click(function() {
       graphMode = "mindmap";
@@ -186,17 +187,21 @@ define(function(require, exports, module) {
       TSCORE.showLoadingAnimation();
       TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
     });
-	};
+	}
 	
-  // Vars
+  // API Vars
   exports.Title = extensionTitle;
   exports.ID = extensionID;
   exports.Icon = extensionIcon;
 
-  // Methods
+  // API Methods
+  exports.init = init;
+  exports.load = load;
 	exports.clearSelectedFiles = clearSelectedFiles;
 	exports.getNextFile	= getNextFile;
 	exports.getPrevFile = getPrevFile;
   exports.removeFileUI = removeFileUI;
   exports.updateFileUI = updateFileUI;
+  exports.updateTreeData = updateTreeData;
+
 });
