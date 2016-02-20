@@ -1,4 +1,4 @@
-A TagSpaces perspective extension allowing to view your file system as a graph. This extension is intended as demo, which main purpose is show the what can be created with of TagSpaces as basis.
+A TagSpaces perspective extension allowing to view your file system as a graph. This extension is intended as demo, which main purpose is show the what can be created with TagSpaces as basis.
 
 ## Features
 
