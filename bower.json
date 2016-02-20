@@ -18,7 +18,7 @@
     "inforvis",
     "graph"
   ],
-  "license": "",
+  "license": "MIT",
   "main": [
     "extension.js"
   ],
