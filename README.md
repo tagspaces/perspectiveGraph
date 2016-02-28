@@ -27,7 +27,7 @@ If you want to extend this extensions, please follow our general [extension deve
 
 ## Screenshots
 
-![Screenshot of the perspectiveGraph](http://tagspaces.org/extensions/editorHTML/perspectiveGraph-screenshot.png)
+![Screenshot of the perspectiveGraph](http://tagspaces.org/extensions/perspectiveGraph/perspectiveGraph-screenshot.png)
 
 ## License
 
