@@ -42,10 +42,12 @@ define(function(require, exports, module) {
           .done(function(mdData) {
             //console.log("DATA: " + mdData);
             if (marked) {
-              $("#aboutExtensionModalGraph .modal-body").html(marked(mdData));
-            } else {              
-              console.warn("marked function not found");
-            }
+              var modalBody = $("#aboutExtensionModalGraph .modal-body");
+              modalBody.html(marked(mdData));
+              handleLinks(modalBody);
+            } else {
+              console.log("markdown to html transformer not found");
+            }  
           })
           .fail(function(data) {
             console.warn("Loading file failed " + data);
@@ -58,6 +60,21 @@ define(function(require, exports, module) {
     });
 	}
 	
+  function handleLinks($element) {
+    $element.find("a[href]").each(function() {
+      var currentSrc = $(this).attr("href");
+      var path;
+      $(this).bind('click', function(e) {
+        e.preventDefault();
+        if (path) {
+          currentSrc = encodeURIComponent(path);
+        }
+        var msg = {command: "openLinkExternally", link : currentSrc};
+        window.parent.postMessage(JSON.stringify(msg), "*");
+      });
+    });
+  }  
+  
 	function load() {
 		console.log("Loading View "+extensionID);
     TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
