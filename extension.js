@@ -25,13 +25,43 @@ define(function(require, exports, module) {
     require([
       "text!" + extensionDirectory + '/toolbar.html',
      // "css!" + extensionDirectory + '/extension.css',
+     "css!" + extensionDirectory + '/css/markdown.css',     
     ], function(toolbarTPL) {
       var toolbarTemplate = Handlebars.compile(toolbarTPL);
       $viewContainer.append(toolbarTemplate({ id: extensionID }));
 
       initUI();
 
-      $('#' + extensionID + 'Container [data-i18n]').i18n();
+      try {
+        $('#' + extensionID + 'Container [data-i18n]').i18n();
+        
+        var myMarkedFunk;
+        require(["marked"], function(marked) {
+          myMarkedFunk = marked;
+        });         
+        
+        $('#aboutExtensionModalGraph').on('show.bs.modal', function() {
+          $.ajax({
+            url: extensionDirectory + '/README.md',
+            type: 'GET'
+          })
+          .done(function(mdData) {
+            //console.log("DATA: " + mdData);
+            if (typeof(myMarkedFunk) != 'undefined') {
+              $("#aboutExtensionModalGraph .modal-body").html(myMarkedFunk(mdData));
+            } else {
+              $("#aboutExtensionModalGraph .modal-body").html(mdData);
+              console.warn("marked function not found");
+            }
+          })
+          .fail(function(data) {
+            console.warn("Loading file failed " + data);
+          });
+        }); 
+        
+      } catch (err) {
+        console.log("Failed translating extension");
+      }   
     });
 	}
 	
