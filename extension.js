@@ -24,9 +24,9 @@ define(function(require, exports, module) {
 
     require([
       "text!" + extensionDirectory + '/toolbar.html',
-     // "css!" + extensionDirectory + '/extension.css',
-     "css!" + extensionDirectory + '/css/markdown.css',     
-    ], function(toolbarTPL) {
+			"marked",
+     // "css!" + extensionDirectory + '/extension.css',          
+    ], function(toolbarTPL, marked) {
       var toolbarTemplate = Handlebars.compile(toolbarTPL);
       $viewContainer.append(toolbarTemplate({ id: extensionID }));
 
@@ -34,12 +34,6 @@ define(function(require, exports, module) {
 
       try {
         $('#' + extensionID + 'Container [data-i18n]').i18n();
-        
-        var myMarkedFunk;
-        require(["marked"], function(marked) {
-          myMarkedFunk = marked;
-        });         
-        
         $('#aboutExtensionModalGraph').on('show.bs.modal', function() {
           $.ajax({
             url: extensionDirectory + '/README.md',
@@ -47,8 +41,8 @@ define(function(require, exports, module) {
           })
           .done(function(mdData) {
             //console.log("DATA: " + mdData);
-            if (typeof(myMarkedFunk) != 'undefined') {
-              $("#aboutExtensionModalGraph .modal-body").html(myMarkedFunk(mdData));
+            if (typeof(marked) != 'undefined') {
+              $("#aboutExtensionModalGraph .modal-body").html(marked(mdData));
             } else {
               $("#aboutExtensionModalGraph .modal-body").html(mdData);
               console.warn("marked function not found");
