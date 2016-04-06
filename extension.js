@@ -41,10 +41,9 @@ define(function(require, exports, module) {
           })
           .done(function(mdData) {
             //console.log("DATA: " + mdData);
-            if (typeof(marked) != 'undefined') {
+            if (marked) {
               $("#aboutExtensionModalGraph .modal-body").html(marked(mdData));
-            } else {
-              $("#aboutExtensionModalGraph .modal-body").html(mdData);
+            } else {              
               console.warn("marked function not found");
             }
           })
