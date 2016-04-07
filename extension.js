@@ -43,7 +43,7 @@ define(function(require, exports, module) {
             //console.log("DATA: " + mdData);
             if (marked) {
               var modalBody = $("#aboutExtensionModalGraph .modal-body");
-              modalBody.html(marked(mdData));
+              modalBody.html(marked(mdData, { sanitize: true }));
               handleLinks(modalBody);
             } else {
               console.log("markdown to html transformer not found");
