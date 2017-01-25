@@ -23,10 +23,9 @@ define(function(require, exports, module) {
     $viewContainer = $("#"+extensionID+"Container").empty();
 
     require([
-      "text!" + extensionDirectory + '/toolbar.html',
-			"marked",
+      "text!" + extensionDirectory + '/templates.html',
       "css!" + extensionDirectory + '/extension.css',
-    ], function(toolbarTPL, marked) {
+    ], function(toolbarTPL) {
       var toolbarTemplate = Handlebars.compile(toolbarTPL);
       $viewContainer.append(toolbarTemplate({ id: extensionID }));
 
@@ -40,20 +39,13 @@ define(function(require, exports, module) {
             type: 'GET'
           })
           .done(function(mdData) {
-            //console.log("DATA: " + mdData);
-            if (marked) {
-              var modalBody = $("#aboutExtensionModalGraph .modal-body");
-              modalBody.html(marked(mdData, { sanitize: true }));
-              handleLinks(modalBody);
-            } else {
-              console.log("markdown to html transformer not found");
-            }  
+            var modalBody = $("#aboutExtensionModalGraph .modal-body");
+            TSCORE.Utils.setMarkDownContent(modalBody, mdData)
           })
           .fail(function(data) {
             console.warn("Loading file failed " + data);
           });
-        }); 
-        
+        });
       } catch (err) {
         console.log("Failed translating extension");
       }   
