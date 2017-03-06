@@ -65,8 +65,11 @@ define(function(require, exports, module) {
   
 	function load() {
 		console.log("Loading View "+extensionID);
-    TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
-	}
+    treeData = TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
+    reDraw();
+    TSCORE.hideLoadingAnimation();
+    TSCORE.hideWaitingDialog();
+  }
 	
 	function reDraw() {
 	  var $viewContainers = $("#viewContainers");
@@ -189,31 +192,46 @@ define(function(require, exports, module) {
     $("#" + extensionID + "ActivateMindmapButton").click(function() {
       graphMode = "mindmap";
       TSCORE.showLoadingAnimation();
-      TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
+      treeData = TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
+      reDraw();
+      TSCORE.hideLoadingAnimation();
+      TSCORE.hideWaitingDialog();
     });
 
     $("#" + extensionID + "ActivateTreeMapButton").click(function() {
       graphMode = "treeMap";
       TSCORE.showLoadingAnimation();
-      TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
+      treeData = TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
+      reDraw();
+      TSCORE.hideLoadingAnimation();
+      TSCORE.hideWaitingDialog();
     });
 
     $("#" + extensionID + "ActivateTreeMapNaviButton").click(function() {
       graphMode = "treeMap2";
       TSCORE.showLoadingAnimation();
-      TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
+      treeData = TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
+      reDraw();
+      TSCORE.hideLoadingAnimation();
+      TSCORE.hideWaitingDialog();
     });
 
     $("#" + extensionID + "ActivateTreeButton").click(function() {
       graphMode = "tree";
       TSCORE.showLoadingAnimation();
-      TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
+      treeData = TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
+      reDraw();
+      TSCORE.hideLoadingAnimation();
+      TSCORE.hideWaitingDialog();
     });
 
     $("#" + extensionID + "ActivateBilevelPartitionButton").click(function() {
       graphMode = "bilevelPartition";
       TSCORE.showLoadingAnimation();
-      TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
+      treeData = TSCORE.IO.createDirectoryTree(TSCORE.currentPath);
+      reDraw();
+      TSCORE.hideLoadingAnimation();
+      TSCORE.hideWaitingDialog();
     });
 	}
 	
