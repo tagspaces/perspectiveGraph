@@ -152,16 +152,6 @@ define(function(require, exports, module) {
     }
 	}
 	
-	function updateTreeData(fsTreeData) {
-		console.log("Updating tree data, Rendering graph...");
-		
-		treeData = fsTreeData;
-		
-		reDraw();
-   
-		TSCORE.hideLoadingAnimation(); 
-	}
-	
 	function clearSelectedFiles() {
 
 		console.log("clearSelectedFiles not implemented in "+extensionID);
@@ -248,6 +238,4 @@ define(function(require, exports, module) {
 	exports.getPrevFile = getPrevFile;
   exports.removeFileUI = removeFileUI;
   exports.updateFileUI = updateFileUI;
-  exports.updateTreeData = updateTreeData;
-
 });
