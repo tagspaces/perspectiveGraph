@@ -1,6 +1,5 @@
-/* Copyright (c) 2012-2013 The TagSpaces Authors. All rights reserved.
- * Use of this source code is governed by a AGPL3 license that 
- * can be found in the LICENSE file. */
+/* Copyright (c) 2013-present The TagSpaces Authors.
+ * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
 
 define(function(require, exports, module) {
   "use strict";
